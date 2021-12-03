@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "@openzeppelin/contracts": "^4.4.0",
+    "jquery": "^3.6.0",
+    "moralis": "^0.0.143",
     "truffle": "^5.4.23"
   }
 }

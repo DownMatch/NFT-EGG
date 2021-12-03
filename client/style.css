@@ -4,3 +4,7 @@
 #game{
     display: none;
 }
+
+#btn-logout {
+    display: none;
+}

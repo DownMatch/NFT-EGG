@@ -1,25 +1,40 @@
-Moralis.initialize("PwXfiNrld8EI4Imj7xclw6xkvgiY47GKRr5TydPC");
-Moralis.serverURL = "https://3tdnuse5wb3y.usemoralis.com:2053/server"
+const appId = "PwXfiNrld8EI4Imj7xclw6xkvgiY47GKRr5TydPC";
+const serverUrl = "https://3tdnuse5wb3y.usemoralis.com:2053/server";
+Moralis.start({ serverUrl, appId });
 
-async function init() {
-    try {
-        let user = Moralis.User.current();
-        if(!user){
-            $("#login_button").click( () => {
-                user = await Moralis.Web3.authenticate();
-            })
+async function login() {
+    let user = Moralis.User.current();
+    if (!user) {
+        try {
+            user = await Moralis.authenticate({ signingMessage: "Machote put the contract description here (the message u get when u connect metamask)" })
+            console.log(user)
+            console.log(user.get('ethAddress'))
+        } catch (error) {
+            console.log(error)
         }
         renderGame();
-    } catch(error) {
-        console.log(error);
+    } else if (ethereum.isConnected()) {
+        renderGame();
     }
 }
 
-function renderGame(){
-    $("#game").hide();
-    $("#login_button").hide();
+async function logOut() {
+    await Moralis.User.logOut();
+    console.log("logged out");
+    logOutFromGame();
 }
 
-init();
+async function renderGame(){
+    $("#btn-logout").show();
+    $("#btn-login").hide();
+    $("#game").show();
+}
 
-document.getElementById("login_button").onclick = login;
+async function logOutFromGame(){
+    $("#game").hide();
+    $("#btn-logout").hide();
+    $("#btn-login").show();
+}
+
+document.getElementById("btn-logout").onclick = logOut;
+document.getElementById("btn-login").onclick = login;
