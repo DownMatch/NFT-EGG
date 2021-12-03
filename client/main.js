@@ -1,6 +1,6 @@
 const appId = "PwXfiNrld8EI4Imj7xclw6xkvgiY47GKRr5TydPC";
 const serverUrl = "https://3tdnuse5wb3y.usemoralis.com:2053/server";
-const CONTRACT_ADDRESS = "0xAf366bB822a6B5d29b3589e172ebC53Fa7846b17"
+const CONTRACT_ADDRESS = "0x6538439A67658c7f7403425Ec15E58747d1B4dB3"
 Moralis.start({ serverUrl, appId });
 
 async function login() {
